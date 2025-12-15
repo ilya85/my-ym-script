@@ -1,8 +1,7 @@
 <?php
-// index.php — тест исходящего запроса
+// index.php — тест исходящего запроса к Яндекс.Метрике
 echo "<h2>Тест запроса к Яндекс.Метрике</h2>";
 
-// Попытка подключиться к Яндексу
 $ch = curl_init('https://api-metrika.yandex.ru/management/v1/counters');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_TIMEOUT, 10);
@@ -13,4 +12,4 @@ $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
 echo "HTTP-код: " . $http_code . "<br>";
-echo "Ответ: <pre>" . htmlspecialchars(substr($response, 0, 500)) . "</pre>";
+echo "Ответ: <pre>" . htmlspecialchars(substr($response, 0, 1000)) . "</pre>";
