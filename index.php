@@ -1,11 +1,16 @@
 <?php
-// index.php — тест исходящего запроса к Яндекс.Метрике
+// index.php — тест с авторизацией
+$OAUTH_TOKEN = 'y0__xD9l7nJCBj-qTwg3LSM1hXm5Ij7vu67shCDusmFebyuVtWQFQ'; // ← ваш рабочий токен
+
 echo "<h2>Тест запроса к Яндекс.Метрике</h2>";
 
 $ch = curl_init('https://api-metrika.yandex.ru/management/v1/counters');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Authorization: OAuth ' . $OAUTH_TOKEN
+]);
 
 $response = curl_exec($ch);
 $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
